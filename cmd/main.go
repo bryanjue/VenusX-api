@@ -7,3 +7,5 @@ func main() {
 	greeting = "Hello my friend "
 	fmt.Println(greeting)
 }
+
+hola
