@@ -16,6 +16,7 @@ func NewApp() *App {
 
 	// Configura las rutas
 	routes.SetupHelloRoute(router)
+	routes.SetupSearchRoute(router)
 
 	return &App{
 		router: router,
