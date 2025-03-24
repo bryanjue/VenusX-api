@@ -33,6 +33,7 @@ func SetupSearchRoute(router *gin.Engine) {
 		for _, article := range articles {
 			if article.Bar_code == code {
 				found = true
+				results = append(results, article)
 				break // Termina el bucle si lo encuentra
 			}
 		}
