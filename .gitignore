@@ -1,1 +1,4 @@
 /.DS_Store
+/cmd/tmp/*
+/cmd/tmp/buil-errors.log
+/tmp
