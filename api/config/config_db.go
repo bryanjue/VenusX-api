@@ -1,6 +1,7 @@
 package config
 
 import (
+	"VenusX/api/models"
 	"fmt"
 	"log"
 
@@ -25,10 +26,15 @@ func ConnectDB() {
 	if err != nil {
 		log.Fatal("Failed to connect to database")
 	}
+	DB.AutoMigrate(&models.Product{})
+	// DB.AutoMigrate(&models.User{})
+	// DB.AutoMigrate(&models.Order{})
+	DB.Debug().AutoMigrate(&models.Product{})
 
 	fmt.Println("Database connection successfully established")
 }
 
 func GetDB() *gorm.DB {
+
 	return DB
 }
