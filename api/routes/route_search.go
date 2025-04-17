@@ -1,21 +1,14 @@
 package routes
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
-
-// Lista de ejemplo (simulando una base de datos)
-var articles = []struct {
-	ID       int
-	Bar_code int
-	Name     string
-}{
-	{1, 1234567890123, "CocaCola"},
-}
 
 // SetupSearchRoute configura la ruta de búsqueda
 func SetupSearchRoute(router *gin.Engine) {
@@ -39,31 +32,57 @@ func SetupSearchRoute(router *gin.Engine) {
 			return
 		}
 
-		var results []struct {
-			ID       int
-			Bar_code int
-			Name     string
-		}
-		found := false
+		c.JSON(http.StatusOK, gin.H{
+			"message": fmt.Sprintf("Código de barras recibido: %d", code),
+		})
+	})
 
-		// Buscar coincidencias en la lista
-		for _, article := range articles {
-			if article.Bar_code == code {
-				found = true
-				results = append(results, article)
-				break
-			}
+	router.POST("/products", func(c *gin.Context) {
+		var newProduct struct {
+			Name        string  `json:"name"`
+			Description string  `json:"description"`
+			Price       float64 `json:"price"`
 		}
 
-		// Responder con los resultados o mensaje de error
-		if found {
-			c.JSON(http.StatusOK, gin.H{
-				"results": results,
-			})
-		} else {
-			c.JSON(http.StatusNotFound, gin.H{
-				"message": fmt.Sprintf("No se encontraron resultados para %d", code),
-			})
+		if err := c.ShouldBindJSON(&newProduct); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"message": "Datos inválidos"})
+			return
 		}
+
+		// Leer el archivo news_products.json
+		file, err := os.OpenFile("api/news_products.json", os.O_RDWR|os.O_CREATE, 0755)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"message": "Error al abrir el archivo"})
+			return
+		}
+		defer file.Close()
+
+		var products []struct {
+			Name        string  `json:"name"`
+			Description string  `json:"description"`
+			Price       float64 `json:"price"`
+		}
+
+		// Leer los productos existentes
+		if err := json.NewDecoder(file).Decode(&products); err != nil {
+			products = []struct {
+				Name        string  `json:"name"`
+				Description string  `json:"description"`
+				Price       float64 `json:"price"`
+			}{}
+		}
+
+		// Agregar el nuevo producto
+		products = append(products, newProduct)
+
+		// Guardar los productos en el archivo
+		file.Truncate(0)
+		file.Seek(0, 0)
+		if err := json.NewEncoder(file).Encode(products); err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"message": "Error al guardar el producto"})
+			return
+		}
+
+		c.JSON(http.StatusCreated, gin.H{"message": "Producto creado exitosamente"})
 	})
 }
