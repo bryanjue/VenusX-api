@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"VenusX/api/models"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -38,11 +39,7 @@ func SetupSearchRoute(router *gin.Engine) {
 	})
 
 	router.POST("/products", func(c *gin.Context) {
-		var newProduct struct {
-			Name        string  `json:"name"`
-			Description string  `json:"bar_code"`
-			Price       float64 `json:"price"`
-		}
+		var newProduct []models.Product
 
 		if err := c.ShouldBindJSON(&newProduct); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"message": "Datos inválidos"})
