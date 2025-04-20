@@ -1,0 +1,9 @@
+
+# Archivos de configuración local
+.env
+config.env
+
+# Archivos de sistema comunes
+*.log
+*.tmp
+.DS_Store

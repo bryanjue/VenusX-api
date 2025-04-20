@@ -39,9 +39,9 @@ func SetupSearchRoute(router *gin.Engine) {
 	})
 
 	router.POST("/products", func(c *gin.Context) {
-		var newProduct []models.Product
+		var newProducts []models.Product
 
-		if err := c.ShouldBindJSON(&newProduct); err != nil {
+		if err := c.ShouldBindJSON(&newProducts); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"message": "Datos inválidos"})
 			return
 		}
@@ -54,23 +54,15 @@ func SetupSearchRoute(router *gin.Engine) {
 		}
 		defer file.Close()
 
-		var products []struct {
-			Name        string  `json:"name"`
-			Description string  `json:"bar_code"`
-			Price       float64 `json:"price"`
-		}
+		var products []models.Product
 
 		// Leer los productos existentes
 		if err := json.NewDecoder(file).Decode(&products); err != nil {
-			products = []struct {
-				Name        string  `json:"name"`
-				Description string  `json:"bar_code"`
-				Price       float64 `json:"price"`
-			}{}
+			products = []models.Product{}
 		}
 
-		// Agregar el nuevo producto
-		products = append(products, newProduct)
+		// Agregar los nuevos productos
+		products = append(products, newProducts...)
 
 		// Guardar los productos en el archivo
 		file.Truncate(0)

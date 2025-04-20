@@ -18,3 +18,8 @@ func GetProductsBarCode(barcode uint) (*models.Product, error) {
 	}
 	return &product, nil
 }
+
+func AddProducts(newProducts []models.Product) error {
+	result := config.GetDB().Create(&newProducts)
+	return result.Error
+}
