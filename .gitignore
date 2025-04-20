@@ -2,3 +2,6 @@
 /cmd/tmp/*
 /cmd/tmp/buil-errors.log
 /tmp
+/mi-backend
+/mi-backend/*
+/news_products.json
