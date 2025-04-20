@@ -1,18 +1,14 @@
 package routes
 
 import (
-	"VenusX/api/models"
-	"encoding/json"
-	"fmt"
-	"net/http"
-	"os"
-	"strconv"
+	"VenusX/api/controllers"
 
 	"github.com/gin-gonic/gin"
 )
 
 // SetupSearchRoute configura la ruta de búsqueda
 func SetupSearchRoute(router *gin.Engine) {
+<<<<<<< HEAD
 	router.GET("/search", func(c *gin.Context) {
 		query := c.Query("Bar_code")
 
@@ -74,4 +70,7 @@ func SetupSearchRoute(router *gin.Engine) {
 
 		c.JSON(http.StatusCreated, gin.H{"message": "Producto creado exitosamente"})
 	})
+=======
+	router.GET("/search", controllers.GetProductsByBarCode)
+>>>>>>> 620edea0171e11f35b0467b58a9cf2b7fd02d81d
 }
