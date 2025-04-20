@@ -40,7 +40,7 @@ func SetupSearchRoute(router *gin.Engine) {
 	router.POST("/products", func(c *gin.Context) {
 		var newProduct struct {
 			Name        string  `json:"name"`
-			Description string  `json:"description"`
+			Description string  `json:"bar_code"`
 			Price       float64 `json:"price"`
 		}
 
@@ -59,7 +59,7 @@ func SetupSearchRoute(router *gin.Engine) {
 
 		var products []struct {
 			Name        string  `json:"name"`
-			Description string  `json:"description"`
+			Description string  `json:"bar_code"`
 			Price       float64 `json:"price"`
 		}
 
@@ -67,7 +67,7 @@ func SetupSearchRoute(router *gin.Engine) {
 		if err := json.NewDecoder(file).Decode(&products); err != nil {
 			products = []struct {
 				Name        string  `json:"name"`
-				Description string  `json:"description"`
+				Description string  `json:"bar_code"`
 				Price       float64 `json:"price"`
 			}{}
 		}
