@@ -16,7 +16,7 @@ func GetProducts(c *gin.Context) {
 	c.JSON(200, products)
 }
 func GetProductsByBarCode(c *gin.Context) {
-	barcodeParam := c.Param("barcode")
+	barcodeParam := c.Query("Bar_code")
 	barcode, err := strconv.ParseUint(barcodeParam, 10, 32)
 	if err != nil {
 		c.JSON(400, gin.H{"error": "Código de barras inválido"})

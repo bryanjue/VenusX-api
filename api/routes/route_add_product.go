@@ -1,15 +1,6 @@
 package routes
 
-import (
-	"VenusX/api/models"
-	"encoding/json"
-	"net/http"
-	"os"
-
-	"github.com/gin-gonic/gin"
-)
-
-func SetupAddProduct(router *gin.Engine) {
+/*func SetupAddProduct(router *gin.Engine) {
 	router.POST("/add_product", func(c *gin.Context) {
 		var newProduct []models.Product
 
@@ -51,3 +42,4 @@ func SetupAddProduct(router *gin.Engine) {
 		c.JSON(http.StatusCreated, gin.H{"message": "Producto creado exitosamente"})
 	})
 }
+*/

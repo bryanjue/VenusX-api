@@ -7,6 +7,6 @@ import (
 )
 
 // SetupSearchRoute configura la ruta de búsqueda
-func SetupSearchRoute(router *gin.Engine) {
-	router.GET("/search", controllers.GetProductsByBarCode)
+func SetupGetAllProductsRoute(router *gin.Engine) {
+	router.GET("/getproducts", controllers.GetProducts)
 }
