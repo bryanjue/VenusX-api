@@ -23,3 +23,9 @@ func AddProducts(newProducts []models.Product) error {
 	result := config.GetDB().Create(&newProducts)
 	return result.Error
 }
+
+func DeleteProductByID(id uint) error {
+	db := config.GetDB()
+	result := db.Unscoped().Delete(&models.Product{}, id)
+	return result.Error
+}

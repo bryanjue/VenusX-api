@@ -79,3 +79,21 @@ func CreateProducts(c *gin.Context) {
 
 	c.JSON(http.StatusCreated, gin.H{"message": "Productos creados exitosamente"})
 }
+
+func DeleteProduct(c *gin.Context) {
+	idParam := c.Param("id")
+
+	id, err := strconv.Atoi(idParam)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "ID inválido"})
+		return
+	}
+
+	err = db.DeleteProductByID(uint(id))
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al borrar el producto"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Producto eliminado correctamente"})
+}
