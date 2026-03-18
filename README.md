@@ -32,4 +32,4 @@ El sistema está construido siguiendo los principios de **Clean Architecture**, 
 
 1. Clona el repositorio:
    ```bash
-   git clone [https://github.com/tu-usuario/venusx-api.git](https://github.com/tu-usuario/venusx-api.git)
+   git clone https://github.com/bryanjue/VenusX-api.git
