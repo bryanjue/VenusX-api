@@ -26,8 +26,8 @@ El sistema está construido siguiendo los principios de **Clean Architecture**, 
 * **Búsqueda Optimizada:** Endpoints de baja latencia para la búsqueda de artículos por código de barras.
 * **Gestión de Carritos:** Lógica transaccional para evitar inconsistencias de stock durante cobros paralelos.
 * **Seguridad:** Autenticación de usuarios, gestión de variables de entorno seguras y configuración estricta de CORS.
-* **Testing Automatizado:** Arquitectura preparada para cobertura de pruebas unitarias y de integración, simulando flujos reales de caja.
-
+* **Testing Automatizado:** Arquitectura preparada para cobertura de pruebas unitarias y de integración, simulando flujos reales de caja.(En
+    proceso de implementación)
 ## ⚙️ Instalación y Uso Local
 
 1. Clona el repositorio:
