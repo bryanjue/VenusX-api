@@ -1,0 +1,45 @@
+
+
+services:
+  # --- CONTAINER 1: THE DATABASE ---
+  db:
+    image: postgres:15-alpine
+    container_name: venusx_postgres
+    environment:
+      # Internal Postgres engine configuration using your variables
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "${DB_PORT}:5432" # Maps your local port to the internal Postgres port
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      # Checks that Postgres is ready before allowing the API to start
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # --- CONTAINER 2: YOUR GO API ---
+  api:
+    build: .
+    container_name: venusx_api_container
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      # Passing your exact variables to the Go code
+      - DB_HOST=${DB_HOST}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
+    volumes:
+      - .:/app
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
