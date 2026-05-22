@@ -17,7 +17,7 @@ func ConnectDB() {
 
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Error cargando el archivo .env")
+		log.Println("No .env file loaded, using existing environment variables")
 	}
 
 	dsn := fmt.Sprintf(
