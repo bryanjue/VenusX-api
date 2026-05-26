@@ -29,6 +29,7 @@ func NewApp() *App {
 	routes.SetupGetAllProductsRoute(router)
 	routes.SetupAddProduct(router)
 	routes.SetupDeleteProductRoute(router)
+	routes.SetupGetAllClientRoute(router)
 
 	return &App{
 		router: router,

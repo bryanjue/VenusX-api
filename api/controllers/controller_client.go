@@ -1,10 +1,7 @@
-/* package controllers
+package controllers
 
 import (
 	"VenusX/api/db"
-	"VenusX/api/models"
-	"net/http"
-	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -12,13 +9,13 @@ import (
 func GetClients(c *gin.Context) {
 	clients, err := db.GetAllClients()
 	if err != nil {
-		c.JSON(500, gin.H{"error": "Error al obtener productos"})
+		c.JSON(500, gin.H{"error": "Error al obtener clientes"})
 		return
 	}
-	c.JSON(200, products)
+	c.JSON(200, clients)
 }
 
-func GetProductsByBarCod(c *gin.Context) {
+/*func GetProductsByBarCod(c *gin.Context) {
 	barcodeParam := c.Query("Bar_code")
 	barcode, err := strconv.ParseUint(barcodeParam, 10, 32)
 	if err != nil {
@@ -97,4 +94,4 @@ func DeleteProdct(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"message": "Producto eliminado correctamente"})
 }
-*;/
+*/
