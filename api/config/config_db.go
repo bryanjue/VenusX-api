@@ -37,6 +37,8 @@ func ConnectDB() {
 	// DB.AutoMigrate(&models.User{})
 	// DB.AutoMigrate(&models.Order{})
 	DB.Debug().AutoMigrate(&models.Product{})
+	/*DB.AutoMigrate(&models.Client{})
+	DB.Debug().AutoMigrate(&models.Client{})*;/
 
 	fmt.Println("Database connection successfully established")
 }
