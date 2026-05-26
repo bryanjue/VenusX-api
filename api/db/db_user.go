@@ -5,10 +5,10 @@ import (
 	"VenusX/api/models"
 )
 
-func GetAllClients() ([]models.Client, error) {
-	var clients []models.Client
-	result := config.GetDB().Find(&clients)
-	return clients, result.Error
+func GetAllUsers() ([]models.Client, error) {
+	var users []models.Client
+	result := config.GetDB().Find(&users)
+	return users, result.Error
 }
 
 /*func GetProductsBarCode(barcode uint) (*models.Product, error) {
