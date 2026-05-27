@@ -36,9 +36,11 @@ func ConnectDB() {
 	// Migrate of table products
 	DB.AutoMigrate(&models.Product{})
 	DB.Debug().AutoMigrate(&models.Product{})
+
 	// Migrate of table clients
 	DB.AutoMigrate(&models.Client{})
 	DB.Debug().AutoMigrate(&models.Client{})
+
 	// Migrate of table users
 	DB.AutoMigrate(&models.User{})
 	DB.Debug().AutoMigrate(&models.User{})

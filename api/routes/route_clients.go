@@ -6,21 +6,23 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-/* SetupSearchRoute configura la ruta de búsqueda
-func SetupSearchRoute(router *gin.Engine) {
-	router.GET("/search", controllers.GetProductsByBarCode)
-}
-func SetupDeleteProductRoute(router *gin.Engine) {
-	router.DELETE("/delete_product/:id", controllers.DeleteProduct)
-}
+/*
+	SetupSearchRoute configura la ruta de búsqueda
 
-// SetupAddProduct sets up the route for adding a product
+	func SetupSearchRoute(router *gin.Engine) {
+		router.GET("/search", controllers.GetProductsByBarCode)
+	}
 
-func SetupAddProduct(router *gin.Engine) {
-	router.POST("/add_product", controllers.CreateProducts)
-}
+// SetupAddClient sets up the route for adding a product
 */
+func SetupAddClient(router *gin.Engine) {
+	router.POST("/add_client", controllers.CreateClients)
+}
+
 // SetupSearchRoute configura la ruta de búsqueda
 func SetupGetAllClientRoute(router *gin.Engine) {
 	router.GET("/getclients", controllers.GetClients)
+}
+func SetupDeleteClientRoute(router *gin.Engine) {
+	router.DELETE("/delete_client/:id", controllers.DeleteClient)
 }

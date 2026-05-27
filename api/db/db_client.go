@@ -11,23 +11,24 @@ func GetAllClients() ([]models.Client, error) {
 	return clients, result.Error
 }
 
-/*func GetProductsBarCode(barcode uint) (*models.Product, error) {
-	var product models.Product
-	result := config.GetDB().Where("bar_code = ?", barcode).First(&product)
-	if result.Error != nil {
-		return nil, result.Error
-	}
-	return &product, nil
-}
-
-func AddClients(newProducts []models.Product) error {
-	result := config.GetDB().Create(&newProducts)
+func AddClients(newClients []models.Client) error {
+	result := config.GetDB().Create(&newClients)
 	return result.Error
 }
 
-func DeleteProductByID(id uint) error {
+func DeleteClientByID(id uint) error {
 	db := config.GetDB()
-	result := db.Unscoped().Delete(&models.Product{}, id)
+	result := db.Unscoped().Delete(&models.Client{}, id)
 	return result.Error
 }
+
+/*
+	func GetProductsBarCode(barcode uint) (*models.Product, error) {
+		var product models.Product
+		result := config.GetDB().Where("bar_code = ?", barcode).First(&product)
+		if result.Error != nil {
+			return nil, result.Error
+		}
+		return &product, nil
+	}
 */
