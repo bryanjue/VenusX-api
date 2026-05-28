@@ -10,17 +10,19 @@ import (
 func SetupSearchRoute(router *gin.Engine) {
 	router.GET("/search", controllers.GetProductsByBarCode)
 }
-func SetupDeleteProductRoute(router *gin.Engine) {
-	router.DELETE("/delete_product/:id", controllers.DeleteProduct)
-}
 
-// SetupAddProduct sets up the route for adding a product
-
-func SetupAddProduct(router *gin.Engine) {
-	router.POST("/add_product", controllers.CreateProducts)
-}
 */
 // SetupSearchRoute configura la ruta de búsqueda
 func SetupGetAllUsersRoute(router *gin.Engine) {
-	router.GET("/getusers", controllers.GetUSers)
+	router.GET("/getusers", controllers.GetUsers)
+}
+
+func SetupDeleteUserRoute(router *gin.Engine) {
+	router.DELETE("/delete_user/:id", controllers.DeleteUser)
+}
+
+// SetupAddUSer sets up the route for adding a user
+
+func SetupAddUser(router *gin.Engine) {
+	router.POST("/add_user", controllers.CreateUsers)
 }

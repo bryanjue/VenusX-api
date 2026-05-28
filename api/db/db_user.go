@@ -11,6 +11,17 @@ func GetAllUsers() ([]models.Client, error) {
 	return users, result.Error
 }
 
+func AddUsers(newUsers []models.User) error {
+	result := config.GetDB().Create(&newUsers)
+	return result.Error
+}
+
+func DeleteUserByID(id uint) error {
+	db := config.GetDB()
+	result := db.Unscoped().Delete(&models.Product{}, id)
+	return result.Error
+}
+
 /*func GetProductsBarCode(barcode uint) (*models.Product, error) {
 	var product models.Product
 	result := config.GetDB().Where("bar_code = ?", barcode).First(&product)
@@ -20,14 +31,4 @@ func GetAllUsers() ([]models.Client, error) {
 	return &product, nil
 }
 
-func AddClients(newProducts []models.Product) error {
-	result := config.GetDB().Create(&newProducts)
-	return result.Error
-}
-
-func DeleteProductByID(id uint) error {
-	db := config.GetDB()
-	result := db.Unscoped().Delete(&models.Product{}, id)
-	return result.Error
-}
 */

@@ -35,6 +35,11 @@ func NewApp() *App {
 	routes.SetupAddClient(router)
 	routes.SetupDeleteClientRoute(router)
 
+	//routes of Users
+	routes.SetupGetAllUsersRoute(router)
+	routes.SetupAddUser(router)
+	routes.SetupDeleteUserRoute(router)
+
 	return &App{
 		router: router,
 	}
