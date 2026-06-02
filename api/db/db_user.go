@@ -5,8 +5,8 @@ import (
 	"VenusX/api/models"
 )
 
-func GetAllUsers() ([]models.Client, error) {
-	var users []models.Client
+func GetAllUsers() ([]models.User, error) {
+	var users []models.User
 	result := config.GetDB().Find(&users)
 	return users, result.Error
 }
