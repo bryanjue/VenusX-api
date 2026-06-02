@@ -14,7 +14,7 @@ func SetupSearchRoute(router *gin.Engine) {
 */
 // SetupSearchRoute configura la ruta de búsqueda
 func SetupGetAllUsersRoute(router *gin.Engine) {
-	router.GET("/getusers", controllers.GetUsers)
+	router.GET("/getUsers", controllers.GetUsers)
 }
 
 func SetupDeleteUserRoute(router *gin.Engine) {
