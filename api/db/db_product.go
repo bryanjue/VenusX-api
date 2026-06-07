@@ -19,6 +19,12 @@ func GetProductsBarCode(barcode uint) (*models.Product, error) {
 	return &product, nil
 }
 
+func GetProductsByName(name string) ([]models.Product, error) {
+	var products []models.Product
+	result := config.GetDB().Where("LOWER(name) LIKE LOWER(?)", "%"+name+"%").Find(&products)
+	return products, result.Error
+}
+
 func AddProducts(newProducts []models.Product) error {
 	result := config.GetDB().Create(&newProducts)
 	return result.Error

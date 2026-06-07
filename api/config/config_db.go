@@ -45,6 +45,10 @@ func ConnectDB() {
 	DB.AutoMigrate(&models.User{})
 	DB.Debug().AutoMigrate(&models.User{})
 
+	// Migrate of table sales
+	DB.AutoMigrate(&models.Sale{})
+	DB.Debug().AutoMigrate(&models.Sale{})
+
 	fmt.Println("Database connection successfully established")
 }
 

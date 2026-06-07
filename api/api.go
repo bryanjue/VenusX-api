@@ -26,6 +26,7 @@ func NewApp() *App {
 	// Configura las rutas
 	//routes of products
 	routes.SetupSearchRoute(router)
+	routes.SetupSearchByNameRoute(router)
 	routes.SetupGetAllProductsRoute(router)
 	routes.SetupAddProduct(router)
 	routes.SetupDeleteProductRoute(router)
@@ -39,6 +40,11 @@ func NewApp() *App {
 	routes.SetupGetAllUsersRoute(router)
 	routes.SetupAddUser(router)
 	routes.SetupDeleteUserRoute(router)
+
+	//routes of Sales
+	routes.SetupGetAllSalesRoute(router)
+	routes.SetupCreateSaleRoute(router)
+	routes.SetupDeleteSaleRoute(router)
 
 	return &App{
 		router: router,
