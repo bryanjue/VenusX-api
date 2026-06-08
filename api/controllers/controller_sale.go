@@ -20,10 +20,9 @@ func GetSales(c *gin.Context) {
 	c.JSON(200, sales)
 }
 
-func CreateSales(c *gin.Context) {
-	var newSales []models.Sale
-
-	if err := c.ShouldBindJSON(&newSales); err != nil {
+func CreateSale(c *gin.Context) {
+	var raw map[string]interface{}
+	if err := c.ShouldBindJSON(&raw); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"message": "Datos inválidos"})
 		return
 	}
