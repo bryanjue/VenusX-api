@@ -40,6 +40,11 @@ func NewApp() *App {
 	routes.SetupAddUser(router)
 	routes.SetupDeleteUserRoute(router)
 
+	//routes of Sales
+	routes.SetupGetAllSaleRoute(router)
+	routes.SetupAddSale(router)
+	routes.SetupDeleteSaleRoute(router)
+
 	return &App{
 		router: router,
 	}
