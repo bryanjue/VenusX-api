@@ -26,6 +26,7 @@ func NewApp() *App {
 	// Configura las rutas
 	//routes of products
 	routes.SetupSearchRoute(router)
+	routes.SetupSearchByNameRoute(router)
 	routes.SetupGetAllProductsRoute(router)
 	routes.SetupAddProduct(router)
 	routes.SetupDeleteProductRoute(router)

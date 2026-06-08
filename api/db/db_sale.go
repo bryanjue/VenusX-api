@@ -6,13 +6,13 @@ import (
 )
 
 func GetAllSales() ([]models.Sale, error) {
-	var Sales []models.Sale
-	result := config.GetDB().Find(&Sales)
-	return Sales, result.Error
+	var sales []models.Sale
+	result := config.GetDB().Order("created_at desc").Find(&sales)
+	return sales, result.Error
 }
 
-func AddSales(newSales []models.Sale) error {
-	result := config.GetDB().Create(&newSales)
+func CreateSale(sale *models.Sale) error {
+	result := config.GetDB().Create(sale)
 	return result.Error
 }
 

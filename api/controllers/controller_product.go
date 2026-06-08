@@ -28,39 +28,27 @@ func GetProductsByBarCode(c *gin.Context) {
 
 	product, err := db.GetProductsBarCode(uint(barcode))
 	if err != nil {
-		c.JSON(500, gin.H{"error": "Error al obtener producto"})
+		c.JSON(404, gin.H{"error": "Producto no encontrado"})
 		return
 	}
 	c.JSON(200, product)
 }
 
-func SearchProductByBarCode(c *gin.Context) {
-	query := c.Query("Bar_code")
+func SearchProductsByName(c *gin.Context) {
+	query := c.Query("q")
 
 	if query == "" {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"message": "El código de barras no puede estar vacío",
-		})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "El nombre de búsqueda no puede estar vacío"})
 		return
 	}
 
-	code, err := strconv.Atoi(query)
+	products, err := db.GetProductsByName(query)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"message": "El código de barras no es válido",
-		})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error al buscar productos"})
 		return
 	}
 
-	product, err := db.GetProductsBarCode(uint(code))
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"message": "Error al obtener el producto",
-		})
-		return
-	}
-
-	c.JSON(http.StatusOK, product)
+	c.JSON(http.StatusOK, products)
 }
 
 func CreateProducts(c *gin.Context) {
