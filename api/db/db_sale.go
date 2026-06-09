@@ -11,7 +11,7 @@ func GetAllSales() ([]models.Sale, error) {
 	return sales, result.Error
 }
 
-func CreateSale(sale *models.Sale) error {
+func AddSale(sale []models.Sale) error {
 	result := config.GetDB().Create(sale)
 	return result.Error
 }

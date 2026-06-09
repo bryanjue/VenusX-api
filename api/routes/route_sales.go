@@ -7,7 +7,7 @@ import (
 )
 
 func SetupAddSale(router *gin.Engine) {
-	router.POST("/add_sale", controllers.CreateSales)
+	router.POST("/add_sale", controllers.CreateSale)
 }
 
 // SetupSearchRoute configura la ruta de búsqueda
