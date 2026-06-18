@@ -13,7 +13,7 @@ type App struct {
 
 func NewApp() *App {
 	// Crea una nueva instancia de Gin
-	router := gin.Default()
+	router := gin.New()
 
 	router.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"http://localhost:3000"},
