@@ -18,7 +18,7 @@ import (
 
 // setupTestDB initializes an in-memory SQLite database for testing purposes
 func setupTestDB() {
-	testDB, _ := gorm.Open(sqlite.Open(":memory:"), &gorm.Config{})
+	testDB, err := gorm.Open(sqlite.Open(":memory:"), &gorm.Config{})
 	testDB.AutoMigrate(&models.Sale{}, &models.SaleItem{})
 
 	// TODO: Assign testDB to your global database variable
